@@ -11,6 +11,10 @@
     <div class="container">
       <div class="sidebar">
         <h1>Neighborhood Map</h1>
+        <input id="searchPlaceField" type="text" name="searchPlace" placeholder="input the place name" value="">
+        <ul data-bind="foreach: markers">
+          <li><span data-bind="text: name"></span><button type="button" data-bind="click: $parent.removeMarker">remove</button></li>
+        </ul>
 
       </div>
 
@@ -18,17 +22,30 @@
     </div>
 
     <script>
-
+      var mapService = mapService || {}; // services provided by Google Maps API
       function initMap() {
         var mapOptions = {
-          center: {lat: 40.7127837, lng: -74.0059413}, // new york city
-          zoom: 14
-        }
+          center: {lat: 40.758895, lng: -73.985131}, // new york city
+          zoom: 13
+        };
+        var searchPlaceId = 'searchPlaceField',
+            searchInputElem = document.getElementById(searchPlaceId);
 
-        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        mapService.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        mapService.searchBox = new google.maps.places.SearchBox(searchInputElem);
+        mapService.Marker = google.maps.Marker;
       }
 
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTASu4wSSGtlOvRn7rBiBxEl4RJr2Yreo&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBTASu4wSSGtlOvRn7rBiBxEl4RJr2Yreo&callback=initMap"></script>
+    <script src="libs/knockout-3.4.2.js"> </script>
+    <script src="js/map.js"> </script>
+    <!-- Models -->
+    <script src="js/models/marker.js"> </script>
+
+    <!-- viewmodels -->
+    <script src="js/viewmodels/main.js"> </script>
+
+    <script src="js/app.js"> </script>
   </body>
 </html>

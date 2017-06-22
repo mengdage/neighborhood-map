@@ -10,17 +10,21 @@ body {
   height: 100%;
 }
 
-.container .sidebar {
+.sidebar {
   float: left;
   height: 100%;
   width: 35%;
 }
 
-.sidebar {
+.sidebar h1 {
   text-align: center;
 }
 
-.container #map {
+#searchPlaceField {
+  width: 90%;
+}
+
+#map {
   float: left;
   height: 100%;
   width: 65%;
